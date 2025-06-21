@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 // import selector
 import {selectTopics} from "./topicsSlice";
+import { useSelector } from "react-redux";
 
 export default function Topics() {
-  const topics = selectTopics; // Use the selector to get topics from the Redux store
+  const topics = useSelector((state) => state.topics.topics);
 
   return (
     <section className="center">

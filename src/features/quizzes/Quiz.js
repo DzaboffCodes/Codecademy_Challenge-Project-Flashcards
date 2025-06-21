@@ -7,7 +7,7 @@ import ROUTES from "../../app/routes";
 import { selectQuizzes } from "./quizzesSlice";
 
 export default function Quiz() {
-  const quizzes = selectQuizzes; 
+  const quizzes = selectQuizzes(useSelector((state) => state.quizzes)); 
   const { quizId } = useParams();
   const quiz = quizzes[quizId];
 

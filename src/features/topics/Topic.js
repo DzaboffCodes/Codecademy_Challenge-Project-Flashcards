@@ -2,13 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams, Navigate } from "react-router-dom";
 import ROUTES from "../../app/routes";
-// import selectors
 import { selectTopics } from "./topicsSlice"; 
 import { selectQuizzes } from "../quizzes/quizzesSlice";  
 
 export default function Topic() {
-  const topics = selectTopics;  
-  const quizzes = selectQuizzes;
+  const topics = useSelector(selectTopics);  
+  const quizzes = useSelector(selectQuizzes);
   const { topicId } = useParams();
   const topic = topics[topicId];
 
@@ -16,7 +15,7 @@ export default function Topic() {
     return <Navigate to={ROUTES.topicsRoute()} replace/>
   }
   
-  const quizzesForTopic = topic.quizIds.map((quizId) => quizzes[quizId]);
+  const quizzesForTopic = topic.quizIds.map((quizId) => quizzes[quizId]).filter(Boolean);
 
   return (
     <section>
@@ -29,7 +28,7 @@ export default function Topic() {
           </li>
         ))}
       </ul>
-      <Link to="/quizzes/new" className="button center">
+      <Link to={ROUTES.newQuizRoute()} className="button center">
         Create a New Quiz
       </Link>
     </section>

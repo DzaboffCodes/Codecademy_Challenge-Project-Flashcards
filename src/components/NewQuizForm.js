@@ -18,7 +18,7 @@ export default function NewQuizForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name.length === 0) {
+    if (name.length === 0 || topicId.length === 0 || cards.length === 0) {
       return;
     }
 
@@ -45,10 +45,10 @@ export default function NewQuizForm() {
     // dispatch add quiz action 
     dispatch(
       addQuiz({
-        id: uuidv4(),
+        id: quizId,
         topicId,
         name,
-        cardIds: cardIds,
+        cardIds,
       })
     );
 
@@ -83,6 +83,7 @@ export default function NewQuizForm() {
         />
         <select
           id="quiz-topic"
+          value={topicId}
           onChange={(e) => setTopicId(e.currentTarget.value)}
           placeholder="Topic"
         >
