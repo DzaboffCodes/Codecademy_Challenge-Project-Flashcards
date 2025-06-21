@@ -5,7 +5,7 @@ import ROUTES from "../../app/routes";
 import {selectTopics} from "./topicsSlice";
 
 export default function Topics() {
-  const topics = selectTopics(); // Use the selector to get topics from the Redux store
+  const topics = selectTopics; // Use the selector to get topics from the Redux store
 
   return (
     <section className="center">
