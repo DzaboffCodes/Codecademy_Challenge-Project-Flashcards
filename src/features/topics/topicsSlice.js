@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addQuiz } from '../quizzes/quzzesSlice';
+import { addQuiz } from '../quizzes/quizzesSlice';
 
 // Initial State for the topics slice
 const initialState = {
