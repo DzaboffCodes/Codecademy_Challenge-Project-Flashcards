@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 // import selector
+import {selectTopics} from "./topicsSlice";
 
 export default function Topics() {
-  const topics = {}; // replace this with a call to your selector to select all the topics in state
+  const topics = selectTopics(); // Use the selector to get topics from the Redux store
 
   return (
     <section className="center">
