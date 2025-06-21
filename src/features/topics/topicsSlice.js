@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addQuiz } from '../quizzes/quzzesSlice';
 
 // Initial State for the topics slice
 const initialState = {
@@ -13,6 +14,15 @@ export const topicsSlice = createSlice({
         addTopic: (state, action) => {
             const { id, name, icon } = action.payload;
             state.topics[id] = { id, name, icon, quizIds: [] }; // Add a new topic with its ID, name, icon, and an empty quizIds array
+        }
+    },
+    extraReducers: {
+        // Handle the case where a quiz is added, and we need to update the topic's quizIds
+        [addQuiz]: (state, action) => {
+            const { topicId, id } = action.payload; // Extract topicId and quiz ID from the action payload
+            if (state.topics[topicId]) {
+                state.topics[topicId].quizIds.push(id); // Add the quiz ID to the topic's quizIds array
+            }
         }
     }
 })
